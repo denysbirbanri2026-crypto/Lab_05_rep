@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <cmath>
 
 using namespace std;
@@ -28,27 +29,32 @@ int main()
     cout << "dx = "; cin >> dx;
     cout << "eps = "; cin >> eps;
 
+    const int wx = 8, wf = 12, ws = 12, wn = 5; // ширини колонок таблиці
+    const string line = "+" + string(wx + 2, '-') + "+"
+                            + string(wf + 2, '-') + "+"
+                            + string(ws + 2, '-') + "+"
+                            + string(wn + 2, '-') + "+";
+
     cout << fixed;
-    cout << "-------------------------------------------------" << endl;
-    cout << "|" << setw(5) << "x" << "      |"
-         << setw(10) << "exp(x^2)" << "   |"
-         << setw(7) << "S" << "       |"
-         << setw(5) << "n" << "   |" << endl;
-    cout << "-------------------------------------------------" << endl;
+    cout << line << endl;
+    cout << "| " << setw(wx) << "x" << " | " << setw(wf) << "exp(x^2)"
+         << " | " << setw(ws) << "S" << " | " << setw(wn) << "n" << " |"
+         << endl;
+    cout << line << endl;
 
     x = xp;
     while (x <= xk)
     {
         S(x, eps, n, s);
 
-        cout << "|" << setw(7) << setprecision(2) << x << "   |"
-             << setw(10) << setprecision(5) << exp(x * x) << "   |"
-             << setw(10) << setprecision(5) << s << "   |"
-             << setw(5) << n << "   |" << endl;
+        cout << "| " << setw(wx) << setprecision(2) << x
+             << " | " << setw(wf) << setprecision(5) << exp(x * x)
+             << " | " << setw(ws) << setprecision(5) << s
+             << " | " << setw(wn) << n << " |" << endl;
 
         x += dx;
     }
-    cout << "-------------------------------------------------" << endl;
+    cout << line << endl;
 
     return 0;
 }
